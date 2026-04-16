@@ -9,6 +9,7 @@
 .cita p {
   font-weight: bold;
   margin-bottom: .8rem;
+  margin-top: 0;
 }
 
 .cita p span {
@@ -30,4 +31,14 @@
   background-color: #c10059;
   color: white;
   margin-top: 2rem;
+}
+
+.alerta-error {
+  background-color: white;
+  color: red;
+  padding: 1rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: 'Staatliches', cursive;
 }
