@@ -1,8 +1,24 @@
+import { useState } from 'react';
 import './Formulario.css'
 
-const Formulario = ()=>{
+const Formulario = ({agregarCita})=>{
+    const [datos, setDatos] = useState([])
+    const ingresar = (event)=>{
+        const formulario = event.target
+        event.preventDefault()
+        setDatos(
+            {
+                mascota: formulario.mascota,
+                propietario: formulario.propietario,
+                fecha: formulario.fecha,
+                hora: formulario.hora,
+                sintomas: formulario.sintomas
+            }
+        )
+        agregarCita(datos);
+    }
     return (
-    <form>
+    <form onSubmit={(e) => ingresar(e)}>
         <label>Nombre Mascota</label>
         <input type="text" name="mascota" className="u-full-width" placeholder="Nombre Mascota" />
         <label>Nombre Dueño</label>
