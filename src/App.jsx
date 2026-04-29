@@ -3,11 +3,25 @@ import './App.css'
 import Formulario from './components/Formulario'
 import Listado from './components/Listado'
 import Titulo from './components/Titulo'
+import Modal from './components/Modal';
 
 function App() {
   const [listaCitas, setListaCitas] = useState([]);
-  const agregarCita = (cita)=>{
+  const [citaAEliminar, setCitaAEliminar] = useState(null);
+  const agregarCita = (cita) => {
     setListaCitas([...listaCitas, cita])
+  };
+  const pedirEliminar = (cita) => {
+    setCitaAEliminar(cita);
+  };
+
+  const confirmarEliminar = () => {
+    setListaCitas(listaCitas.filter(c => c !== citaAEliminar));
+    setCitaAEliminar(null);
+  };
+
+  const cancelarEliminar = () => {
+    setCitaAEliminar(null);
   };
   return (
     <>
@@ -18,15 +32,20 @@ function App() {
 
           <div className="one-half column">
             <Titulo texto="Crear mi Cita" />
-            <Formulario agregarCita={agregarCita}/>
+            <Formulario agregarCita={agregarCita} />
           </div>
 
           <div className="one-half column">
             <Titulo texto="Administra tus citas" />
-            <Listado listaCitas={listaCitas}/>
+            <Listado listaCitas={listaCitas} pedirEliminar={pedirEliminar} />
           </div>
 
         </div>
+        <Modal
+          visible={citaAEliminar !== null}
+          onConfirmar={confirmarEliminar}
+          onCancelar={cancelarEliminar}
+        />
       </div>
     </>
   )

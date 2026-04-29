@@ -1,5 +1,5 @@
 import './Cita.css'
-const Cita =({cita})=>{
+const Cita =({cita, pedirEliminar})=>{
     return (
     <div className="cita">
         <p>Mascota: <span>{cita.mascota}</span></p>
@@ -7,7 +7,10 @@ const Cita =({cita})=>{
         <p>Fecha: <span>{cita.fecha}</span></p>
         <p>Hora: <span>{cita.hora}</span></p>
         <p>Sintomas: <span>{cita.sintomas}</span></p>
-        <button className="button elimnar u-full-width">Eliminar ×</button>
+        <button className="button eliminar u-full-width"
+        onClick={() => pedirEliminar(cita)}>
+                Eliminar ×
+        </button>
     </div>
     );
 };
